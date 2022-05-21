@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
   // find a single tag by its `id`
   // be sure to include its associated Product data
   try {
-    const oneTag = await Tag.findByPk({
+    const oneTag = await Tag.findByPk(req.params.id, {
       include: [{ model: Product}],
     });
     if (!oneTag) {
@@ -39,21 +39,25 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new tag
+  // {
+  //   "tag_name": "Cute",
+  //   "productIds": [1,2,3];
+  // }
   // used method from product-routes
-  Tag.create(req.body)
+  Tag.create(req.body) 
     .then((tag) => {
-      if (req.body.productIds.length) {
-        const productTagIdArr = req.body.productIds.map((product_id) => {
-          return {
-            tag_id: tag_id,
-            product_id,
-          };
-        });
-        return ProductTag.bulkCreate(productTagIdArr);
-      }
+      // if (req.body.productIds.length) {
+      //   const productTagIdArr = req.body.productIds.map((product_id) => {
+      //     return {
+      //       tag_id: tag_id,
+      //       product_id,
+      //     };
+      //   });
+      //   return ProductTag.bulkCreate(productTagIdArr);
+      // }
       res.status(200).json(tag);
     })
-    .then((productTagIds) => res.status(200).json(productTagIds))
+    //.then((productTagIds) => res.status(200).json(productTagIds))
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);

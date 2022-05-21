@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Category and Tag data
   try {
     const oneProduct = await Product.findByPk(req.params.id, {
-      include: [{model: Category}, {model: Product}],
+      include: [{model: Category}, {model: Tag, through: ProductTag}],
     });
     if (!oneProduct) {
       res.status(404).send("Could not find data");
