@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
   // create a new category
   try {
     let newCategory = await Category.create({
-      category_name: req.body.category_name;
+      category_name: req.body.category_name
     });
     if (!newCategory) {
       res.status(404).send("Could not create new category");
