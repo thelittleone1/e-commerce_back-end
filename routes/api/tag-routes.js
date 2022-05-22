@@ -40,24 +40,13 @@ router.get('/:id', async (req, res) => {
 router.post('/', (req, res) => {
   // create a new tag
   // {
-  //   "tag_name": "Cute",
-  //   "productIds": [1,2,3];
+  //   "tag_name": "Cute"
   // }
   // used method from product-routes
   Tag.create(req.body) 
     .then((tag) => {
-      // if (req.body.productIds.length) {
-      //   const productTagIdArr = req.body.productIds.map((product_id) => {
-      //     return {
-      //       tag_id: tag_id,
-      //       product_id,
-      //     };
-      //   });
-      //   return ProductTag.bulkCreate(productTagIdArr);
-      // }
       res.status(200).json(tag);
     })
-    //.then((productTagIds) => res.status(200).json(productTagIds))
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);
@@ -107,3 +96,15 @@ router.delete('/:id', async (req, res) => {
 });
 
 module.exports = router;
+
+// First attempt at updating a tag by it's id
+ // if (req.body.productIds.length) {
+      //   const productTagIdArr = req.body.productIds.map((product_id) => {
+      //     return {
+      //       tag_id: tag_id,
+      //       product_id,
+      //     };
+      //   });
+      //   return ProductTag.bulkCreate(productTagIdArr);
+      // }
+      //.then((productTagIds) => res.status(200).json(productTagIds))

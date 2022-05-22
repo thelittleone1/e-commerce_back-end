@@ -59,21 +59,6 @@ router.put('/:id', async (req, res) => {
   // {
   //   "category_name": "NewShirts"
   // }
-  // try {
-  //   let updateCategory = await Category.update({
-  //     category_name: req.body.category_name,
-  //     where: {
-  //       id: req.params.id,
-  //     },
-  //   });
-  //   if (!updateCategory) {
-  //     res.status(404).send("Could not update category");
-  //     return;
-  //   }
-  //   res.status(200).json(updateCategory);
-  // } catch (err) {
-  //   res.status(500).json(err);
-  // }
   Category.update(
     {
       category_name: req.body.category_name,
@@ -115,3 +100,24 @@ router.delete('/:id', async (req, res) => {
 });
 
 module.exports = router;
+
+// Initial attemp at updating category by id
+  // update a category by its `id` value
+  // {
+  //   "category_name": "NewShirts"
+  // }
+  // try {
+  //   let updateCategory = await Category.update({
+  //     category_name: req.body.category_name,
+  //     where: {
+  //       id: req.params.id,
+  //     },
+  //   });
+  //   if (!updateCategory) {
+  //     res.status(404).send("Could not update category");
+  //     return;
+  //   }
+  //   res.status(200).json(updateCategory);
+  // } catch (err) {
+  //   res.status(500).json(err);
+  // }
